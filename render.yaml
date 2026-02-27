@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: nyaya-api
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: REACT_APP_GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 3001
+
+  - type: static
+    name: nyaya-app
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_GEMINI_API_KEY
+        sync: false
